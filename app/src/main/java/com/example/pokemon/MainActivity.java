@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.pokemon.Sign_In.Login;
+import com.example.pokemon.View.PokemonView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,13 +35,15 @@ public class MainActivity extends AppCompatActivity {
         splashscreen_pokemon_image = findViewById(R.id.splash_screen_pokemon_image);
         splashscreen_pokemon_logo = findViewById(R.id.splash_screen_pokemon_logo);
 
+        //Add animation to the image
         splashscreen_pokemon_image.setAnimation(topAnimation);
         splashscreen_pokemon_logo.setAnimation(bottomAnimation);
 
+        //Navigate to next Activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, Login.class);
+                Intent intent = new Intent(MainActivity.this, PokemonView.class);
                 startActivity(intent);
                 finish();
             }

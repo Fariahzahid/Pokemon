@@ -8,8 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
+    <color name="orange">#FF8000</color>
+    <color name="pokemonYellow">#ffcb05</color>
+    //Shades of Grey
+    <color name="greyone">#F2F2F2</color>
+    <color name="greytwo">#C1CDCD</color>
+    <color name="greythree">#BDBDBD</color>
+
+    //Shades of Blue
     <color name="pokemonBlue_one">#3d7dca</color>
     <color name="pokemonbluetwo">#6791d3</color>
-    <color name="pokemonYellow">#ffcb05</color>
+    <color name="lightblueone">#BFEFFF</color>
+    <color name="skyblue">#87CEEB</color>
     <color name="pokemonNavyBlue">#003a70</color>
+    <color name="royalblue">#3A5FCD</color>
+    <color name="royalbluetwo">#27408B</color>
+    <color name="deepblue">#00688B</color>
 </resources>

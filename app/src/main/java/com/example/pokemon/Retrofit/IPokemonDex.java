@@ -7,7 +7,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface IPokemonDex {
-    @GET("pokedex.json")
+    @GET("cfxSFgvWxu?indent=2")
     Observable<Pokedex> getListPokemon();
 
 }

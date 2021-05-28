@@ -61,6 +61,8 @@ dependencies {
     //Recycle View
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
+    //Chip View
+
 
 
 }

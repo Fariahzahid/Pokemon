@@ -1,17 +1,22 @@
 package com.example.pokemon;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.example.pokemon.Sign_In.Login;
-import com.example.pokemon.View.PokemonView;
+import com.example.pokemon.View.View_Pokemon;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Check Internet Connection
+        if(!isConnected(this)){
+            showCustomDialog();
+        }
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
@@ -43,11 +53,43 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, PokemonView.class);
+                Intent intent = new Intent(MainActivity.this, View_Pokemon.class);
                 startActivity(intent);
                 finish();
             }
         },SPLASH_SCREEN);
+    }
+    private boolean isConnected(MainActivity view_pokemon) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) view_pokemon.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if(wifiConnection != null && wifiConnection.isConnected() || mobileConnection!=null && mobileConnection.isConnected()){
+            return true;
+        }
+        else
+            return false;
+
+
+
+    }
+    private void showCustomDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Please Connect to the Internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(), View_Pokemon.class));
+                        finish();
+                    }
+                });
+
     }
 
 }

@@ -1,15 +1,19 @@
 package com.example.pokemon.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.Menu;
+import android.provider.Settings;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -21,11 +25,14 @@ import com.example.pokemon.Common.Common;
 import com.example.pokemon.Model.Pokemon;
 import com.example.pokemon.R;
 
-public class PokemonView extends AppCompatActivity {
+import java.net.NetworkInterface;
+
+public class View_Pokemon extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    BroadcastReceiver showDetails = new BroadcastReceiver() {
+    //Showing Fragments
+    BroadcastReceiver showDetailsPokemon = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().toString().equals(Common.KEY_ENABLE_HOME)){
@@ -34,10 +41,10 @@ public class PokemonView extends AppCompatActivity {
                 getSupportActionBar().setDisplayShowHomeEnabled(true);
 
                 //Replace Fragment
-                Fragment detailFragment = PokemonDetails.getInstance();
-                int position = intent.getIntExtra("position",-1);
+                Fragment detailFragment = Details_Pokemon.getInstance();
+                String num = intent.getStringExtra("num");
                 Bundle bundle = new Bundle();
-                bundle.putInt("position",position);
+                bundle.putString("num",num);
                 detailFragment.setArguments(bundle);
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -46,19 +53,20 @@ public class PokemonView extends AppCompatActivity {
                 fragmentTransaction.commit();
 
                 //Set Pokemone Name for toolbar
-                Pokemon pokemon = Common.commonPokemonList.get(position);
+                Pokemon pokemon = Common.findPokemonByNum(num);
                 toolbar.setTitle(pokemon.getName());
             }
         }
     };
 
-    BroadcastReceiver showEvolution = new BroadcastReceiver() {
+
+    BroadcastReceiver showEvolutionPokemon = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().toString().equals(Common.KEY_NUM_EVOLUTION)){
 
                 //Replace Fragment
-                Fragment detailFragment = PokemonDetails.getInstance();
+                Fragment detailFragment = Details_Pokemon.getInstance();
                 Bundle bundle = new Bundle();
                 String num = intent.getStringExtra("num");
                 bundle.putString("num",num);
@@ -70,7 +78,7 @@ public class PokemonView extends AppCompatActivity {
                 fragmentTransaction.addToBackStack("details");
                 fragmentTransaction.commit();
 
-                //Set Pokemone NAme for toolbar
+                //Set Pokemone Name for toolbar
                 Pokemon pokemon = Common.findPokemonByNum(num);
                 toolbar.setTitle(pokemon.getName());
             }
@@ -84,23 +92,21 @@ public class PokemonView extends AppCompatActivity {
         setContentView(R.layout.activity_pokemon_view);
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("POKEMON LIST");
+        toolbar.setTitle("POKEMON");
         setSupportActionBar(toolbar);
 
-        LocalBroadcastManager.getInstance(this)
-                .registerReceiver(showEvolution,new IntentFilter(Common.KEY_NUM_EVOLUTION));
+
         //Register Broadcast
         LocalBroadcastManager.getInstance(this)
-                .registerReceiver(showDetails,new IntentFilter(Common.KEY_ENABLE_HOME));
-
+                .registerReceiver(showDetailsPokemon,new IntentFilter(Common.KEY_ENABLE_HOME));
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(showEvolutionPokemon,new IntentFilter(Common.KEY_NUM_EVOLUTION));
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        return true;
-    }
+
+
+
 
 
     @Override
@@ -112,7 +118,6 @@ public class PokemonView extends AppCompatActivity {
 
                 //Clear All fragment details and pop to list fragment
                 getSupportFragmentManager().popBackStack("details", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
                 getSupportActionBar().setDisplayShowHomeEnabled(false);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 break;

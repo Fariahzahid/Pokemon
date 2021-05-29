@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.PokemonView"
+    tools:context=".View.View_Pokemon"
     android:background="@drawable/backgrount_gradient">
 
     <LinearLayout
@@ -31,8 +31,10 @@
 
         <fragment
             android:id="@+id/list_pokemon_fragment"
-            android:name="com.example.pokemon.View.PokemonList"
+            android:name="com.example.pokemon.View.List_Pokemon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></fragment>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

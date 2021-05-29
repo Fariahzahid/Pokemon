@@ -91,13 +91,5 @@ public class Common {
         return null;
     }
 
-    public static List<Pokemon> findPokemonsByType(String type) {
-        List<Pokemon> result = new ArrayList<>();
-        for(Pokemon pokemon : Common.commonPokemonList)
-        {
-            if(pokemon.getType().contains(type))
-                result.add(pokemon);
-        }
-        return result;
-    }
+
 }

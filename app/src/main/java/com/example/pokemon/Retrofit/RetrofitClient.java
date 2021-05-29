@@ -10,6 +10,7 @@ public class RetrofitClient {
     public static Retrofit getInstace() {
         if (instace == null) {
             instace = new Retrofit.Builder()
+                    //BaseURL for json file
                     .baseUrl("http://www.json-generator.com/api/json/get/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

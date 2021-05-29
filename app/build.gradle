@@ -61,6 +61,7 @@ dependencies {
     //Recycle View
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 
 
 

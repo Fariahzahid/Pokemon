@@ -2,12 +2,12 @@ package com.example.pokemon.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -21,12 +21,12 @@ import com.example.pokemon.R;
 
 import java.util.List;
 
-public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.MyViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
 
     Context context;
     List<Pokemon> pokemonList;
 
-    public PokemonListAdapter(Context context, List<Pokemon> pokemonList) {
+    public ListAdapter(Context context, List<Pokemon> pokemonList) {
         this.context = context;
         this.pokemonList = pokemonList;
     }
@@ -40,41 +40,47 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull PokemonListAdapter.MyViewHolder holder, int position) {
-        //Load Image
-        Glide.with(context).load(pokemonList.get(position).getImg()).into(holder.pokemon_image);
+    public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull ListAdapter.MyViewHolder holder, int position) {
+
+        try {
+            //Load Image
+            Glide.with(context).load(pokemonList.get(position).getImg()).into(holder.pokemon_image);        }
+        catch(Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+
+
         //Set Name
         holder.pokemon_name.setText(pokemonList.get(position).getName());
-        //Event
+        //Event for item click in list
         holder.setiItemClickListener(new IItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                //Toast.makeText(context,"Click at Pokemon : " +pokemonList.get(position).getName(),Toast.LENGTH_LONG).show();
                 LocalBroadcastManager.getInstance(context)
-                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("position",position));
+                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("num",pokemonList.get(position).getNum()));
 
             }
         });
 
         holder.pokemon_height.setText(pokemonList.get(position).getHeight());
-        //Event
+        //Event listener
         holder.setiItemClickListener(new IItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                //Toast.makeText(context,"Click at Pokemon : " +pokemonList.get(position).getName(),Toast.LENGTH_LONG).show();
                 LocalBroadcastManager.getInstance(context)
-                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("position",position));
+                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("num",pokemonList.get(position).getNum()));
 
             }
         });
         holder.pokemon_weight.setText(pokemonList.get(position).getWeight());
-        //Event
+        //Event Listener
         holder.setiItemClickListener(new IItemClickListener() {
             @Override
             public void onClick(View view, int position) {
                 //Toast.makeText(context,"Click at Pokemon : " +pokemonList.get(position).getName(),Toast.LENGTH_LONG).show();
                 LocalBroadcastManager.getInstance(context)
-                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("position",position));
+                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("num",pokemonList.get(position).getNum()));
 
             }
         });
@@ -108,8 +114,6 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
             pokemon_name = (TextView)itemView.findViewById(R.id.txt_pokemon_name);
             pokemon_height = (TextView)itemView.findViewById(R.id.txt_pokemon_height);
             pokemon_weight = (TextView)itemView.findViewById(R.id.txt_pokemon_weight);
-
-
 
             itemView.setOnClickListener(this);
 

@@ -56,6 +56,29 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
             }
         });
 
+        holder.pokemon_height.setText(pokemonList.get(position).getHeight());
+        //Event
+        holder.setiItemClickListener(new IItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //Toast.makeText(context,"Click at Pokemon : " +pokemonList.get(position).getName(),Toast.LENGTH_LONG).show();
+                LocalBroadcastManager.getInstance(context)
+                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("position",position));
+
+            }
+        });
+        holder.pokemon_weight.setText(pokemonList.get(position).getWeight());
+        //Event
+        holder.setiItemClickListener(new IItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //Toast.makeText(context,"Click at Pokemon : " +pokemonList.get(position).getName(),Toast.LENGTH_LONG).show();
+                LocalBroadcastManager.getInstance(context)
+                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("position",position));
+
+            }
+        });
+
 
     }
 
@@ -68,6 +91,9 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
 
         ImageView pokemon_image;
         TextView pokemon_name;
+        TextView pokemon_height;
+        TextView pokemon_weight;
+
 
         IItemClickListener iItemClickListener;
 
@@ -80,6 +106,10 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
 
             pokemon_image = (ImageView)itemView.findViewById(R.id.pokemon_image);
             pokemon_name = (TextView)itemView.findViewById(R.id.txt_pokemon_name);
+            pokemon_height = (TextView)itemView.findViewById(R.id.txt_pokemon_height);
+            pokemon_weight = (TextView)itemView.findViewById(R.id.txt_pokemon_weight);
+
+
 
             itemView.setOnClickListener(this);
 

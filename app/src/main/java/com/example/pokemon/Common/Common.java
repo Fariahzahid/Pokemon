@@ -2,7 +2,6 @@ package com.example.pokemon.Common;
 
 import android.graphics.Color;
 
-import com.example.pokemon.Model.Pokedex;
 import com.example.pokemon.Model.Pokemon;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.List;
 
 public class Common {
     public static final String KEY_ENABLE_HOME = "enable_home" ;
+    public static final String KEY_NUM_EVOLUTION = "num_evolution";
     public static List<Pokemon> commonPokemonList = new ArrayList<>();
 
     public static int getColorByType(String type) {
@@ -80,5 +80,24 @@ public class Common {
             default:
                 return Color.parseColor("#658FA0");
         }
+    }
+
+    public static Pokemon findPokemonByNum(String num) {
+        for(Pokemon pokemon : Common.commonPokemonList)
+        {
+            if(pokemon.getNum().equals(num))
+                return pokemon;
+        }
+        return null;
+    }
+
+    public static List<Pokemon> findPokemonsByType(String type) {
+        List<Pokemon> result = new ArrayList<>();
+        for(Pokemon pokemon : Common.commonPokemonList)
+        {
+            if(pokemon.getType().contains(type))
+                result.add(pokemon);
+        }
+        return result;
     }
 }

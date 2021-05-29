@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.pokemon.Adapter.PokemonEvolutionAdapter;
 import com.example.pokemon.Adapter.PokemonTypeAdapter;
 import com.example.pokemon.Common.Common;
 import com.example.pokemon.Model.Pokemon;
@@ -22,7 +23,7 @@ import com.example.pokemon.R;
 public class PokemonDetails extends Fragment {
 
     ImageView pokemon_img;
-    TextView pokemon_name, pokemon_height,pokemon_weight;
+    TextView pokemon_name, pokemon_height,pokemon_weight,pokemon_candy,pokemon_candy_count,pokemon_egg,pokemon_avgspawn,pokemon_spawnchance,pokemon_spawntime;
     RecyclerView recycler_type,recycler_weakness,recycler_next_evolution,recycler_prev_evolution;
 
     static PokemonDetails instance;
@@ -52,12 +53,18 @@ public class PokemonDetails extends Fragment {
             pokemon = Common.commonPokemonList.get(getArguments().getInt("position"));
         }
         else {
-            pokemon = null;
+            pokemon = Common.findPokemonByNum(getArguments().getString("num"));
         }
         pokemon_img = (ImageView)itemView.findViewById(R.id.pokemon_image);
         pokemon_name = (TextView) itemView.findViewById(R.id.name);
         pokemon_height = (TextView) itemView.findViewById(R.id.height);
         pokemon_weight = (TextView) itemView.findViewById(R.id.weight);
+        pokemon_candy = (TextView) itemView.findViewById(R.id.candy);
+        pokemon_candy_count = (TextView) itemView.findViewById(R.id.candy_count);
+        pokemon_egg = (TextView) itemView.findViewById(R.id.egg);
+        pokemon_avgspawn = (TextView) itemView.findViewById(R.id.average_spawn);
+        pokemon_spawnchance = (TextView) itemView.findViewById(R.id.spawn_chance);
+        pokemon_spawntime = (TextView) itemView.findViewById(R.id.spawn_time);
 
         recycler_type = (RecyclerView) itemView.findViewById(R.id.recycler_type);
         recycler_type.setHasFixedSize(true);
@@ -89,14 +96,29 @@ public class PokemonDetails extends Fragment {
         pokemon_name.setText(pokemon.getName());
         pokemon_weight.setText("Weight " +pokemon.getWeight());
         pokemon_height.setText("Height " +pokemon.getHeight());
+        pokemon_candy.setText("Candy " +pokemon.getCandy());
+        pokemon_candy_count.setText("Candy Count " +pokemon.getCandy_count());
+        pokemon_egg.setText("Egg " +pokemon.getEgg());
+        pokemon_avgspawn.setText("Average Spawn " +pokemon.getAvg_spawns());
+        pokemon_spawntime.setText("Spawn Time " +pokemon.getSpawn_time());
+        pokemon_spawnchance.setText("Spawn Chance " +pokemon.getSpawn_chance());
 
         //Set Type
         PokemonTypeAdapter typeAdapter = new PokemonTypeAdapter(getActivity(),pokemon.getType());
         recycler_type.setAdapter(typeAdapter);
 
         //Set Weakness
-        PokemonTypeAdapter weaknessAdapter = new PokemonTypeAdapter(getActivity(),pokemon.getType());
-        recycler_weakness.setAdapter(typeAdapter);
+        PokemonTypeAdapter weaknessAdapter = new PokemonTypeAdapter(getActivity(),pokemon.getWeaknesses());
+        recycler_weakness.setAdapter(weaknessAdapter);
+
+        //Set Evolution
+        PokemonEvolutionAdapter prevEvolutionAdapter = new PokemonEvolutionAdapter(getActivity(),pokemon.getPrev_evolution());
+        recycler_prev_evolution.setAdapter(prevEvolutionAdapter);
+
+        //Set Evolution
+        PokemonEvolutionAdapter nextEvolutionAdapter = new PokemonEvolutionAdapter(getActivity(),pokemon.getNext_evolution());
+        recycler_next_evolution.setAdapter(nextEvolutionAdapter);
+
 
     }
 }

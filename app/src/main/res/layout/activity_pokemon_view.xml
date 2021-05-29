@@ -20,9 +20,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/greytwo"
+            android:background="@color/pokemonNavyBlue"
             android:minHeight="?attr/actionBarSize"
-            android:titleTextColor="@color/white">
+            android:titleTextColor="@color/white"
+            app:theme="@style/ToolBarStyle"
+
+            >
 
         </androidx.appcompat.widget.Toolbar>
 

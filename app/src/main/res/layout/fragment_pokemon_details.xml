@@ -14,13 +14,19 @@
 
        >
 
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="30dp"
+           android:id="@+id/list_view">
+
        <androidx.cardview.widget.CardView
            android:id="@+id/card_view"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_marginLeft="16dp"
            android:layout_marginRight="16dp"
-           android:layout_marginTop="50dp"
+           android:layout_marginTop="10dp"
            app:cardElevation="0dp"
            app:cardCornerRadius="8dp"
            app:cardBackgroundColor="@color/white"
@@ -40,7 +46,7 @@
                    android:layout_height="wrap_content"
                    android:id="@+id/name"
                    android:text="Pikachu"
-                   android:textSize="8sp"
+                   android:textSize="20sp"
                    android:textStyle="bold"
                    ></TextView>
 
@@ -49,7 +55,8 @@
                    android:layout_height="wrap_content"
                    android:id="@+id/height"
                    android:text="Height"
-                   android:textSize="8sp"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
                    android:textStyle="bold"
                    ></TextView>
 
@@ -58,17 +65,72 @@
                    android:layout_height="wrap_content"
                    android:id="@+id/weight"
                    android:text="Weight"
-                   android:textSize="8sp"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:textStyle="bold"
+                   ></TextView>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/candy"
+                   android:text="Candy"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:textStyle="bold"
+                   ></TextView>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/candy_count"
+                   android:text="Candy Count"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:textStyle="bold"
+                   ></TextView>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/egg"
+                   android:text="Egg"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:textStyle="bold"
+                   ></TextView>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/spawn_chance"
+                   android:text="Spawn Chance"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:textStyle="bold"
+                   ></TextView>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/average_spawn"
+                   android:text="Average Spawn"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
                    android:textStyle="bold"
                    ></TextView>
 
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:id="@+id/spawn_time"
+                   android:text="Spawn Time"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:textStyle="bold"
+                   ></TextView>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
                    android:id="@+id/type"
                    android:text="Type"
                    android:layout_marginBottom="8dp"
-                   android:textSize="30sp"
+                   android:textSize="16sp"
                    android:textStyle="bold"
                    ></TextView>
 
@@ -86,7 +148,7 @@
                    android:id="@+id/Weakness"
                    android:text="Weakness"
                    android:layout_marginBottom="8dp"
-                   android:textSize="30sp"
+                   android:textSize="16sp"
                    android:textStyle="bold"
                    ></TextView>
 
@@ -104,7 +166,7 @@
                    android:id="@+id/evolution"
                    android:text="Previous Evolution"
                    android:layout_marginBottom="8dp"
-                   android:textSize="30sp"
+                   android:textSize="16sp"
                    android:textStyle="bold"
                    ></TextView>
 
@@ -122,7 +184,7 @@
                    android:id="@+id/next_evolution"
                    android:text="Next Evolution"
                    android:layout_marginBottom="8dp"
-                   android:textSize="30sp"
+                   android:textSize="16sp"
                    android:textStyle="bold"
                    ></TextView>
 
@@ -137,12 +199,13 @@
            </LinearLayout>
 
        </androidx.cardview.widget.CardView>
+       </ScrollView>
 
        <ImageView
            android:id="@+id/pokemon_image"
            android:src="@drawable/ic_launcher_background"
            android:layout_centerHorizontal="true"
-           android:layout_alignTop="@+id/card_view"
+           android:layout_alignTop="@+id/list_view"
            android:layout_marginTop="-50dp"
            android:layout_width="150dp"
            android:layout_height="150dp"></ImageView>

@@ -1,12 +1,15 @@
 # Pokemon
  
+See Pokemon_Application_Documentation file for details
+
 http://www.json-generator.com/api/json/get/cfxSFgvWxu?indent=2
 Api used to fetch data of Pokemon.
 
 Resources used for guidenace
-https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
-https://github.com/alvareztech/Pokedex
-https://www.youtube.com/watch?v=r2ALBYx1JuY
+a.	https://github.com/AsynctaskCoffee/PokeApi-pokedex
+b.	https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
+c.	https://github.com/alvareztech/Pokedex
+d.	https://www.youtube.com/watch?v=r2ALBYx1JuY
 
-Purpose:
-The user 
+
+

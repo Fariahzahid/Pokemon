@@ -12,9 +12,18 @@ c.	https://github.com/alvareztech/Pokedex
 d.	https://www.youtube.com/watch?v=r2ALBYx1JuY
 
 Screenshot:
-https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_one.png
-https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_two.png
-https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_three.png
-https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_four.png
+
+Splash Screen:
+<img src="screenshots/screenshot_one" width="350">  
+
+List of Pokemon
+<img src="screenshots/screenshot_two" width="350">  
+
+Details Screen of Pokemon
+<img src="screenshots/screenshot_three" width="350">  
+
+Search Pokemon Character
+<img src="screenshots/screenshot_four" width="350">  
+
 
 

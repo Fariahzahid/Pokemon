@@ -5,7 +5,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pokemon">POKEMON</string>
-    <string name="list">List</string>
+    <string name="list">LIST</string>
     <string name="pikachu">Pickachu</string>
     <string name="height">Height : </string>
     <string name="weight">Weight : </string>

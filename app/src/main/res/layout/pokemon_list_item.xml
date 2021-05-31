@@ -11,21 +11,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:layout_marginLeft="10dp"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/pokemon_image"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_launcher_background"></ImageView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="vertical">
             <TextView
                 android:id="@+id/txt_pokemon_name"

@@ -26,7 +26,7 @@ public class Details_Pokemon extends Fragment {
     ImageView pokemon_img;
     TextView pokemon_name, pokemon_height,pokemon_weight,pokemon_candy,pokemon_candy_count,pokemon_egg,pokemon_avgspawn,pokemon_spawnchance,pokemon_spawntime;
     RecyclerView recycler_type,recycler_weakness,recycler_next_evolution,recycler_prev_evolution;
-    CardView cardView;
+    CardView cardView_name,cardview_type,cardview_weakness,cardview_prev_evolution, cardview_next_evolution;
 
     static Details_Pokemon instance;
 
@@ -68,8 +68,14 @@ public class Details_Pokemon extends Fragment {
         pokemon_avgspawn = (TextView) itemView.findViewById(R.id.average_spawn);
         pokemon_spawnchance = (TextView) itemView.findViewById(R.id.spawn_chance);
         pokemon_spawntime = (TextView) itemView.findViewById(R.id.spawn_time);
-        cardView = (CardView) itemView.findViewById(R.id.card_view);
+        cardView_name = (CardView) itemView.findViewById(R.id.card_view_text_name);
+        cardview_type = (CardView) itemView.findViewById(R.id.card_view_text_type);
+        cardview_weakness = (CardView) itemView.findViewById(R.id.card_view_text_weekness);
+        cardview_prev_evolution = (CardView) itemView.findViewById(R.id.card_view_text_prevevolution);
+        cardview_next_evolution = (CardView) itemView.findViewById(R.id.card_view_text_nextevolution);
 
+
+        //Recycler view settings
         recycler_type = (RecyclerView) itemView.findViewById(R.id.recycler_type);
         recycler_type.setHasFixedSize(true);
         recycler_type.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
@@ -98,7 +104,7 @@ public class Details_Pokemon extends Fragment {
         //Load Image
         Glide.with(getActivity()).load(pokemon.getImg()).into(pokemon_img);
         //Load Data from JSON File
-        pokemon_name.setText(pokemon.getName());
+        pokemon_name.setText("Name : " +pokemon.getName());
         pokemon_weight.setText("Weight : " +pokemon.getWeight());
         pokemon_height.setText("Height : " +pokemon.getHeight());
         pokemon_candy.setText("Candy :  " +pokemon.getCandy());
@@ -107,7 +113,11 @@ public class Details_Pokemon extends Fragment {
         pokemon_avgspawn.setText("Average Spawn : " +pokemon.getAvg_spawns());
         pokemon_spawntime.setText("Spawn Time : " +pokemon.getSpawn_time());
         pokemon_spawnchance.setText("Spawn Chance : " +pokemon.getSpawn_chance());
-        cardView.setBackgroundResource(R.drawable.cardview_style); //set cardview border
+        cardView_name.setBackgroundResource(R.drawable.cardview_style); //set cardview border
+        cardview_type.setBackgroundResource(R.drawable.cardview_style); //set cardview border
+        cardview_weakness.setBackgroundResource(R.drawable.cardview_style); //set cardview border
+        cardview_prev_evolution.setBackgroundResource(R.drawable.cardview_style); //set cardview border
+        cardview_next_evolution.setBackgroundResource(R.drawable.cardview_style); //set cardview border
 
         //Set Type
         TypeAdapter typeAdapter = new TypeAdapter(getActivity(),pokemon.getType());

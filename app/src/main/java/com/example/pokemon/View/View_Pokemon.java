@@ -60,33 +60,7 @@ public class View_Pokemon extends AppCompatActivity {
     };
 
 
-    BroadcastReceiver showEvolutionPokemon = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().toString().equals(Common.KEY_NUM_EVOLUTION)){
-
-                //Replace Fragment
-                Fragment detailFragment = Details_Pokemon.getInstance();
-                Bundle bundle = new Bundle();
-                String num = intent.getStringExtra("num");
-                bundle.putString("num",num);
-                detailFragment.setArguments(bundle);
-
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.remove(detailFragment); //Remove current Fragment
-                fragmentTransaction.replace(R.id.list_pokemon_fragment,detailFragment);
-                fragmentTransaction.addToBackStack("details");
-                fragmentTransaction.commit();
-
-                //Set Pokemone Name for toolbar
-                Pokemon pokemon = Common.findPokemonByNum(num);
-                toolbar.setTitle(pokemon.getName());
-            }
-        }
-    };
-
-
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_view);
@@ -99,8 +73,7 @@ public class View_Pokemon extends AppCompatActivity {
         //Register Broadcast
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(showDetailsPokemon,new IntentFilter(Common.KEY_ENABLE_HOME));
-        LocalBroadcastManager.getInstance(this)
-                .registerReceiver(showEvolutionPokemon,new IntentFilter(Common.KEY_NUM_EVOLUTION));
+
 
     }
 

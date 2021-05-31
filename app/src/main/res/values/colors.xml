@@ -25,4 +25,7 @@
     <color name="royalblue">#3A5FCD</color>
     <color name="royalbluetwo">#27408B</color>
     <color name="deepblue">#00688B</color>
+
+    <color name="aquaone">#66CCCC</color>
+    <color name="powderblue">#B0E0E6</color>
 </resources>

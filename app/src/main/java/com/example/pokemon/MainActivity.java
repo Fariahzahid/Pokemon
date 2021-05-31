@@ -29,10 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Check Internet Connection
-        if(!isConnected(this)){
-            showCustomDialog();
-        }
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
@@ -59,37 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },SPLASH_SCREEN);
     }
-    private boolean isConnected(MainActivity view_pokemon) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) view_pokemon.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if(wifiConnection != null && wifiConnection.isConnected() || mobileConnection!=null && mobileConnection.isConnected()){
-            return true;
-        }
-        else
-            return false;
 
-
-
-    }
-    private void showCustomDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setMessage("Please Connect to the Internet to proceed further")
-                .setCancelable(false)
-                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(getApplicationContext(), View_Pokemon.class));
-                        finish();
-                    }
-                });
-
-    }
 
 }

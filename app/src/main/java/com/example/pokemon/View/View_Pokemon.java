@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.pokemon.Common.Common;
+import com.example.pokemon.MainActivity;
 import com.example.pokemon.Model.Pokemon;
 import com.example.pokemon.R;
 
@@ -69,18 +70,16 @@ public class View_Pokemon extends AppCompatActivity {
         toolbar.setTitle("POKEMON");
         setSupportActionBar(toolbar);
 
-
         //Register Broadcast
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(showDetailsPokemon,new IntentFilter(Common.KEY_ENABLE_HOME));
 
+         //Check Internet Connection
+         if(!isConnected(this)){
+             showCustomDialog();
+         }
 
     }
-
-
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -96,6 +95,39 @@ public class View_Pokemon extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    private boolean isConnected(View_Pokemon view_pokemon) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) view_pokemon.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if(wifiConnection != null && wifiConnection.isConnected() || mobileConnection!=null && mobileConnection.isConnected()){
+            return true;
+        }
+        else
+            return false;
+
+
+
+    }
+    private void showCustomDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(View_Pokemon.this);
+        builder.setMessage("Please Connect to the Internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(), View_Pokemon.class));
+                        finish();
+                    }
+                });
+
     }
 
 }

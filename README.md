@@ -8,4 +8,5 @@ https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
 https://github.com/alvareztech/Pokedex
 https://www.youtube.com/watch?v=r2ALBYx1JuY
 
-Screenshots
+Purpose:
+The user 

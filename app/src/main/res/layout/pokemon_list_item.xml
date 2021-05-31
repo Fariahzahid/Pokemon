@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@color/lightblueone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

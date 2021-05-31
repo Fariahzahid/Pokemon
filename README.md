@@ -11,5 +11,10 @@ b.	https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
 c.	https://github.com/alvareztech/Pokedex
 d.	https://www.youtube.com/watch?v=r2ALBYx1JuY
 
+Screenshot:
+https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_one.png
+https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_two.png
+https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_three.png
+https://github.com/Fariahzahid/Pokemon/blob/main/app/src/main/res/drawable/screenshot_four.png
 
 
